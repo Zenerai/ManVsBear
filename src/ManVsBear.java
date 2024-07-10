@@ -42,7 +42,6 @@ public class ManVsBear {
     man = new Man(name, totalHitPoints, currentHitPoints, minAttackStrength, maxAttackStrength, numofHeals, labyrinthLoc)
     
     */
-
         Scanner scan = new Scanner(System.in);
         boolean goodAnswers = false;
         System.out.println("First thing to do is create the Man!");
@@ -163,6 +162,7 @@ public class ManVsBear {
         dungeons[8] = dungeon9;
 
         System.out.println(Arrays.toString(dungeons));
+
         // shuffle the array
         Random rand = new Random();
         for (int i = 0; i < 100; i++) {
@@ -178,22 +178,50 @@ public class ManVsBear {
         }
         System.out.println(Arrays.toString(dungeons));
         // add them to the labyrinth
-        labyrinth[0][0] = dungeon1;
-        labyrinth[0][1] = dungeon2;
-        labyrinth[0][2] = dungeon3;
+        labyrinth[0][0] = dungeon1[0];
+        labyrinth[0][1] = dungeon2[1];
+        labyrinth[0][2] = dungeon3[2];
 
-        labyrinth[1][0] = dungeon4;
-        labyrinth[1][1] = dungeon5;
-        labyrinth[1][2] = dungeon6;
+        labyrinth[1][0] = dungeon4[3];
+        labyrinth[1][1] = dungeon5[4];
+        labyrinth[1][2] = dungeon6[5];
 
-        labyrinth[2][0] = dungeon7;
-        labyrinth[2][1] = dungeon8;
-        labyrinth[2][2] = dungeon9;
+        labyrinth[2][0] = dungeon7[6];
+        labyrinth[2][1] = dungeon8[7];
+        labyrinth[2][2] = dungeon9[8];
     }
     public void fight() {
         System.out.println("You have entered The Dungeon " + labyrinth[1][1].getdungeon);
         while(true) {
+            /*
+            1. We know the current location of the man.
+            2. Pull out the dungeon and the bear object.
+            3. Is this the first fight or the next fight in the sequence?
+            4. Are all bears dead? Did I win the game? Am I dead?
+             */
+            while (true) {
+            int[] manCurrentLoc = man.getLabyrinthLoc();
+            int manCurrentRow = manCurrentLoc[0];
+            int manCurrentCol = manCurrentLoc[1];
+            Dungeon manCurrentDungeon = labyrinth[manCurrentRow][manCurrentCol];
+            Bear manCurrentBear = manCurrentDungeon.getBear();
 
+            System.out.println("You are now in Dungeon " +manCurrentDungeon.getName()+ " "+manCurrentDungeon.getDescription());
+            System.out.println("The bear you are fighting is named: "+manCurrentBear.getName());
+            System.out.println("The bear has "+manCurrentBear.getCurrentHitPoints()+" total hit points.");
+
+            System.out.println("Man, it's your turn to go first. Would you like to attack (a) or heal (h)");
+            Scanner scan = new Scanner(System.in);
+            if (scan.nextLine().equals("a")) {
+                //Add Attack Code
+                int attackStrength = man.attack();
+                manCurrentBear.recordDamage(attackStrength);
+                System.out.println("You attacked with an attack strength of "+attackStrength+". "+manCurrentBearw.getName()+ "has "+manCurrentBear.getCurrentHitPoints()+" hitpoints remaining.");
+            }
+            //Now it's the bear's turn to attack
+                int bearattackStrength = manCurrentBear.attack();
+                man.recordDamage(bearattackStrength);
+                System.out.println("The bear attacked with an attack strength of "+bearattackStrength+". "+man.getName()+ "has "+man.getCurrentHitPoints()+" hitpoints remaining.");
         }
     }
 
