@@ -4,12 +4,6 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Write a description of class ManVsBearMain here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class ManVsBear {
 
     private Dungeon [][] labyrinth = new Dungeon[3][3];
@@ -25,7 +19,22 @@ public class ManVsBear {
 
     }
     public void displayAsciiArt() {
-        System.out.println("asciiart here please");
+        System.out.println("" +
+                " .'\"'.        ___,,,___        .'``.\n" +
+                ": (\\  `.\"'\"```         ```\"'\"-'  /) ;\n" +
+                " :  \\                         `./  .'\n" +
+                "  `.                            :.'\n" +
+                "    /        _         _        \\\n" +
+                "   |         0}       {0         |\n" +
+                "   |         /         \\         |\n" +
+                "   |        /           \\        |\n" +
+                "   |       /             \\       |\n" +
+                "    \\     |      .-.      |     /\n" +
+                "     `.   | . . /   \\ . . |   .'\n" +
+                "       `-._\\.'.(     ).'./_.-'\n" +
+                "           `\\'  `._.'  '/'\n" +
+                "             `. --'-- .'\n" +
+                "               `-...-'");
 
         System.out.println("Welcome to Man Vs. Bear");
     }
@@ -72,7 +81,7 @@ public class ManVsBear {
                 int[] startingLoc = new int[]{1,1};
 
 
-                man = new Man(name, totalHitPoints, currentHitPoints, minAttackStrength, maxAttackStrength, numofHeals, labyrinthLoc);
+                man = new Man(name, totalHitPoints, currentHitPoints, minAttackStrength, maxAttackStrength, numofHeals, startingLoc);
             } catch (InputMismatchException ime) {
                 System.out.print("Invalid entry, try again.");
                 scan = new Scanner(System.in);
@@ -193,36 +202,35 @@ public class ManVsBear {
     public void fight() {
         System.out.println("You have entered The Dungeon " + labyrinth[1][1].getdungeon);
         while(true) {
-            /*
-            1. We know the current location of the man.
-            2. Pull out the dungeon and the bear object.
-            3. Is this the first fight or the next fight in the sequence?
-            4. Are all bears dead? Did I win the game? Am I dead?
-             */
-            while (true) {
             int[] manCurrentLoc = man.getLabyrinthLoc();
             int manCurrentRow = manCurrentLoc[0];
             int manCurrentCol = manCurrentLoc[1];
             Dungeon manCurrentDungeon = labyrinth[manCurrentRow][manCurrentCol];
             Bear manCurrentBear = manCurrentDungeon.getBear();
-
             System.out.println("You are now in Dungeon " +manCurrentDungeon.getName()+ " "+manCurrentDungeon.getDescription());
             System.out.println("The bear you are fighting is named: "+manCurrentBear.getName());
             System.out.println("The bear has "+manCurrentBear.getCurrentHitPoints()+" total hit points.");
 
-            System.out.println("Man, it's your turn to go first. Would you like to attack (a) or heal (h)");
+            while (true) {
+
+            System.out.println("Man, it's your turn to go. Would you like to attack (a) or heal (h)");
             Scanner scan = new Scanner(System.in);
-            if (scan.nextLine().equals("a")) {
+            if (scan.nextLine().equalsIgnoreCase("a")) {
                 //Add Attack Code
                 int attackStrength = man.attack();
                 manCurrentBear.recordDamage(attackStrength);
                 System.out.println("You attacked with an attack strength of "+attackStrength+". "+manCurrentBearw.getName()+ "has "+manCurrentBear.getCurrentHitPoints()+" hitpoints remaining.");
-            }
-            //Now it's the bear's turn to attack
-                int bearattackStrength = manCurrentBear.attack();
-                man.recordDamage(bearattackStrength);
-                System.out.println("The bear attacked with an attack strength of "+bearattackStrength+". "+man.getName()+ "has "+man.getCurrentHitPoints()+" hitpoints remaining.");
-        }
+                if (manCurrentBear.getCurrentHitPoints() > 0) {
+                    int bearattackStrength = manCurrentBear.attack();
+                    man.recordDamage(bearattackStrength);
+                    System.out.println("The bear attacked with an attack strength of " + bearattackStrength + ". " + man.getName() + "has " + man.getCurrentHitPoints() + " hitpoints remaining.");
+                } else {
+
+                    //Now it's the bear's turn to attack
+
+                    System.out.println("The bear is dead!");
+                    System.out.println("Would you like to move up, down, left or right?");
+                }
     }
 
 

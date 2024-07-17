@@ -1,5 +1,4 @@
-
-/**
+import java.util.Random; /**
  * Write a description of class Man here.
  *
  * @author (your name)
@@ -48,7 +47,12 @@ public int [] getLabyrinthLoc() {
         this.labyrinthLoc = labyrinthLoc;
     }
     public int attack() {
-        return -1;
+        // get a random number between the min and max strength and return it to the caller.
+        Random rand = new Random();
+        int attackStrength = rand.nextInt(minAttackStrength, maxAttackStrength);
+        return attackStrength;
+
+        // Shorter return new Random().nextInt(minAttackStrength, maxAttackStrength);
     }
     public void recordDamage(int amountToSubtract) {
         currentHitPoints = currentHitPoints - amountToSubtract; // Keeping track of damage player takes from bears

@@ -1,5 +1,4 @@
-
-/**
+import java.util.Random; /**
  * Write a description of class Bear here.
  *
  * @author (your name)
@@ -31,7 +30,9 @@ public int getCurrentHitPoints() {
 
 }
 public int attack() {
-    return -1;
+    Random rand = new Random();
+    int attackStrength = rand.nextInt(minAttackStrength, maxAttackStrength);
+    return attackStrength;
 }
 public void recordDamage(int amountToSubtract) {
     currentHitPoints = currentHitPoints - amountToSubtract;
