@@ -215,11 +215,11 @@ public class ManVsBear {
 
             System.out.println("Man, it's your turn to go. Would you like to attack (a) or heal (h)");
             Scanner scan = new Scanner(System.in);
-            if (scan.nextLine().equalsIgnoreCase("a")) {
+                if (scan.nextLine().trim().equalsIgnoreCase("a")) { // .trim gets rid of whitespace for inputs
                 //Add Attack Code
                 int attackStrength = man.attack();
                 manCurrentBear.recordDamage(attackStrength);
-                System.out.println("You attacked with an attack strength of "+attackStrength+". "+manCurrentBearw.getName()+ "has "+manCurrentBear.getCurrentHitPoints()+" hitpoints remaining.");
+                    System.out.println("You attacked with an attack strength of " + attackStrength + ". " + manCurrentBearw.getName() + "has " + manCurrentBear.getCurrentHitPoints() + " hitpoints remaining.");
                 if (manCurrentBear.getCurrentHitPoints() > 0) {
                     int bearattackStrength = manCurrentBear.attack();
                     man.recordDamage(bearattackStrength);
@@ -231,6 +231,30 @@ public class ManVsBear {
                     System.out.println("The bear is dead!");
                     System.out.println("Would you like to move up, down, left or right?");
                 }
+                } else if (scan.nextline().equalsIgnoreCase("h")) {
+                    // Write the heal use case
+                    if (man.heal()) {
+                        System.out.println("You are healed.");
+                        System.out.println("Man " + man.getName() + " now has" + man.getCurrentHitPoints() + " hit points remaining. ");
+
+                    } else {
+                        System.out.println("You don't have any heals remaining, initiating attack sequence.");
+                        int attackStrength = man.attack();
+                        manCurrentBear.recordDamage(attackStrength);
+                        System.out.println("You attacked with an attack strength of " + attackStrength + ". " + manCurrentBearw.getName() + "has " + manCurrentBear.getCurrentHitPoints() + " hitpoints remaining.");
+
+                        if (manCurrentBear.getCurrentHitPoints() > 0) {
+                            int bearattackStrength = manCurrentBear.attack();
+                            man.recordDamage(bearattackStrength);
+                            System.out.println("The bear attacked with an attack strength of " + bearattackStrength + ". " + man.getName() + "has " + man.getCurrentHitPoints() + " hitpoints remaining.");
+                        } else {
+
+                            //Now it's the bear's turn to attack
+
+                            System.out.println("The bear is dead!");
+                            System.out.println("Would you like to move up, down, left or right?");
+                        }
+                    }
     }
 
 
