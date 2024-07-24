@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ManVsBear {
 
-    private Dungeon [][] labyrinth = new Dungeon[3][3];
+    private final Dungeon[][] labyrinth = new Dungeon[3][3];
     private Bear[] bears = new bear[9];
     private Man[] man;
 
@@ -19,8 +19,7 @@ public class ManVsBear {
 
     }
     public void displayAsciiArt() {
-        System.out.println("" +
-                " .'\"'.        ___,,,___        .'``.\n" +
+        System.out.println(" .'\"'.        ___,,,___        .'``.\n" +
                 ": (\\  `.\"'\"```         ```\"'\"-'  /) ;\n" +
                 " :  \\                         `./  .'\n" +
                 "  `.                            :.'\n" +
@@ -54,7 +53,7 @@ public class ManVsBear {
         Scanner scan = new Scanner(System.in);
         boolean goodAnswers = false;
         System.out.println("First thing to do is create the Man!");
-        while(goodAnswers== false) { // Also ! equals NOT. So !goodAnswers also works
+        while (!goodAnswers) { // Also ! equals NOT. So !goodAnswers also works
             try {
 
                 System.out.println("What is the firstname of your man?");
@@ -213,8 +212,8 @@ public class ManVsBear {
 
             while (true) {
 
-            System.out.println("Man, it's your turn to go. Would you like to attack (a) or heal (h)");
-            Scanner scan = new Scanner(System.in);
+                System.out.println("Man, it's your turn to go. Would you like to attack (a) or heal (h)");
+                Scanner scan = new Scanner(System.in);
                 if (scan.nextLine().trim().equalsIgnoreCase("a")) { // .trim gets rid of whitespace for inputs
                 //Add Attack Code
                 int attackStrength = man.attack();
@@ -250,9 +249,20 @@ public class ManVsBear {
                         } else {
 
                             //Now it's the bear's turn to attack
+                            //
+                            boolean allBearsDeads = allBearsDead();
+                            if (!bearsRemaining) {
+                                man.move("North");
 
                             System.out.println("The bear is dead!");
                             System.out.println("Would you like to move up, down, left or right?");
+                                break;
+                            }
+
+                            if (man.getCurrentHitPoints() <= 0) {
+                                System.out.println("You Died. Game Over.");
+                                break;
+                            }
                         }
                     }
     }

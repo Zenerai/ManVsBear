@@ -1,10 +1,6 @@
-import java.util.Random; /**
- * Write a description of class Man here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Man {
+import java.util.Random;
+
+public static class Man {
     private String name;
     private int totalHitPoints;
     private int currentHitPoints;
@@ -22,7 +18,7 @@ public class Man {
     this.currentHitPoints = currentHitPoints;
     this.minAttackStrength = minAttackStrength;
     this.maxAttackStrength = maxAttackStrength;
-    this.numofHeals = numofHeals;
+    this.numOfHeals =numOfHeals;
     this.labyrinthLoc = labyrinthLoc;
 
 }
@@ -69,7 +65,35 @@ public int [] getLabyrinthLoc() {
 }
 
 public void move(String direction) {
+// proper values are north, east, south, west
+    if (direction.equalsIgnoreCase("North")) {
+        if (labyrinthLoc)[0] ==0 {
+            labyrinthLoc[0] = 2;
+        } else{
+            labyrinthLoc[0] = labyrinthLoc[0] - 1;
+        }
 
+    } else if (direction.equalsIgnoreCase("South")) {
+        if (labyrinthLoc)[0] ==2 {
+            labyrinthLoc[0] = 0;
+        } else{
+            labyrinthLoc[0] = labyrinthLoc[0] + 1;
+        }
+    else if (direction.equalsIgnoreCase("East")) {
+            if (labyrinthLoc)[1] ==2 {
+                labyrinthLoc[1] = 0;
+            } else{
+                labyrinthLoc[1] = labyrinthLoc[1] + 1;
+            }
+
+    else if (direction.equalsIgnoreCase("West")) {
+                if (labyrinthLoc)[1] ==0 {
+                    labyrinthLoc[1] = 2;
+                } else{
+                    labyrinthLoc[1] = labyrinthLoc[1] - 1;
+                }
+
+                // row column, [0, 0] North is +1 to [1, 0]
 }
 
 }
