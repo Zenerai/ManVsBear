@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ManVsBear {
 
     private final Dungeon[][] labyrinth = new Dungeon[3][3];
-    private Bear[] bears = new bear[9];
+    private Bear[] bears = new Bear[9];
     private Man[] man;
 
     public void play() {
@@ -250,12 +250,37 @@ public class ManVsBear {
 
                             //Now it's the bear's turn to attack
                             //
-                            boolean allBearsDeads = allBearsDead();
-                            if (!bearsRemaining) {
-                                man.move("North");
+                            boolean allBearsDead = allBearsDead();
 
-                            System.out.println("The bear is dead!");
-                            System.out.println("Would you like to move up, down, left or right?");
+                            if (!allBearsDead) {
+
+                                System.out.println("There are still more bears alive.");
+                                Scanner s = new Scanner(System.in);
+                                System.out.println("Please enter the direction you would like to move.");
+
+                                System.out.println("Valid values are: North, South, East and West.");
+                                String answer = s.nextLine().trim(); // .trim() ignores extra, accidental  whitespace
+
+                                while (!answer.equalsIgnoreCase("North") && !answer.equalsIgnoreCase("South") &&
+                                        !answer.equalsIgnoreCase("East") && !answer.equalsIgnoreCase("West")) {
+
+                                    if (s.nextLine().equalsIgnoreCase("North")) {
+                                        System.out.println("You have chosen to move North.");
+                                        man.move("North");
+                                    } else if (s.nextLine().equalsIgnoreCase("South")) {
+                                        System.out.println("You have chosen to move South.");
+                                        man.move("South");
+                                    } else if (s.nextLine().equalsIgnoreCase("East")) {
+                                        System.out.println("You have chosen to move East.");
+                                        man.move("East");
+                                    } else if (s.nextLine().equalsIgnoreCase("West")) {
+                                        System.out.println("You have chosen to move West.");
+                                        man.move("West");
+                                    } else {
+                                        System.out.println("You have entered a wrong value.");
+                                        System.out.println("Valid entries are, N, S, E, W");
+                                        answer = s.nextLine().trim();
+                                    }
                                 break;
                             }
 
@@ -267,6 +292,22 @@ public class ManVsBear {
                     }
     }
 
+                    private boolean allBearsDead () {
+                        for (int i = 0; i < 3; i++) { // You can do i < labyrinth.length so you don't have to change it if the array size changes.
+                            for (int j = 0; j < 3; j++) {
+                                // Check if bear is alive
+                                if (labyrinth[i][j].getBear().getCurrentHitPoints() <= 0) {
+                                    // If this is true, a bear is still alive, therefore, stop searching and return false.
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+        /*
+            TODO: implement allBearsDead() function
 
+                    return false;
+         */
 
 }

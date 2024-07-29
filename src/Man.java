@@ -6,7 +6,7 @@ public static class Man {
     private int currentHitPoints;
     private int minAttackStrength;
     private int maxAttackStrength;
-    private int numberOfHeals;
+    private int numOfHeals;
     private int [] labyrinthLoc;
 
     public Man(String name, int totalHitPoints, int currentHitPoints, int minAttackStrength, int maxAttackStrength, int numOfHeals, int[] labyrinthLoc) {
@@ -30,8 +30,9 @@ public int getCurrentHitPoints() {
     return numOfHeals;
 
 }
-public void setNumOfHeals(int, numOfHeals) {
-    this.numofHeals = numOfHeals;
+
+    public void setNumOfHeals(int numOfHeals) {
+        this.numOfHeals = numOfHeals;
 }
 
 public int [] getLabyrinthLoc() {
