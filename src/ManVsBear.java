@@ -38,7 +38,7 @@ public class ManVsBear {
         System.out.println("Welcome to Man Vs. Bear");
     }
     public void createTheMan() {
-    /* The goal of this functioin is to create and populate our player object (Man). 
+    /* The goal of this functioin is to create and populate our player object (Man).
     this.name = name; 
     this.totalHitPoints = totalHitPoints; 
     this.currentHitPoints = currentHitPoints;
@@ -48,7 +48,7 @@ public class ManVsBear {
     this.labyrinthLoc = labyrinthLoc;
     
     man = new Man(name, totalHitPoints, currentHitPoints, minAttackStrength, maxAttackStrength, numofHeals, labyrinthLoc)
-    
+
     */
         Scanner scan = new Scanner(System.in);
         boolean goodAnswers = false;
@@ -62,22 +62,32 @@ public class ManVsBear {
                 System.out.println("Alright "+firstName+",how many hit points do you want?");
                 int currentHitPoints = scan.nextInt();
                 System.out.println("Okay. That seems fair. Now, what is your Minimum Attack Strength?");
-                int minAttackStrength = scan.nextInt();
-                if (minAttackStrength < 10) {
-                    System.out.println("Well... You need to hit the gym little buddy...");
-                } else {
-                    System.out.println("Nice! Good Strength for the bottom amount, tough guy.");
+
+                int minAttackStrength;
+                int maxAttackStrength;
+                while (true) {
+                    minAttackStrength = scan.nextInt();
+                    if (minAttackStrength < 10) {
+                        System.out.println("Well... You need to hit the gym little buddy...");
+                    } else {
+                        System.out.println("Nice! Good Strength for the bottom amount, tough guy.");
+                    }
+                    System.out.println("What about max attack Strength?");
+                    maxAttackStrength = scan.nextInt();
+                    if (minAttackStrength < maxAttackStrength) {
+                        break;
+                    }
+                    System.out.println("Minimum attack strength must be smaller than Maximum attack strength.");
+                    System.out.println("Please re-enter your minimum attack strength.");
                 }
-                System.out.println("What about max attack Strength?");
-                int maxAttackStrength = scan.nextInt();
                 System.out.println("Very well. Last question, how many heals do you want?");
                 int numOfHeals = scan.nextInt();
-                if (numOfHeals > 4){
+                if (numOfHeals > 4) {
                     System.out.println("Give me a break. Make it a challenge at least...");
                 } else {
                     System.out.println("Sounds great!");
                 }
-                int[] startingLoc = new int[]{1,1};
+                int[] startingLoc = new int[]{1, 1};
 
 
                 man = new Man(name, totalHitPoints, currentHitPoints, minAttackStrength, maxAttackStrength, numofHeals, startingLoc);
@@ -289,7 +299,9 @@ public class ManVsBear {
                                 break;
                             }
                         }
-                    }
+
+
+                        }
     }
 
                     private boolean allBearsDead () {
