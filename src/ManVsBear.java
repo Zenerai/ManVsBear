@@ -90,7 +90,7 @@ public class ManVsBear {
                 int[] startingLoc = new int[]{1, 1};
 
 
-                man = new Man(name, totalHitPoints, currentHitPoints, minAttackStrength, maxAttackStrength, numofHeals, startingLoc);
+                man = new Man(name, totalHitPoints, currentHitPoints, minAttackStrength, maxAttackStrength, numOfHeals, startingLoc);
             } catch (InputMismatchException ime) {
                 System.out.print("Invalid entry, try again.");
                 scan = new Scanner(System.in);
@@ -146,7 +146,7 @@ public class ManVsBear {
 
             Bear b = bears[randomIndexToSwapA];
 
-            bears[randomIndextoSwapA] = bears[randomInexToSwapB];
+            bears[randomIndextoSwapA] = bears[randomIndexToSwapB];
             bears[randomIndextoSwapB= b;]
         }
         System.out.println(Arrays.toString(bears));
@@ -159,11 +159,11 @@ public class ManVsBear {
 
         Dungeon dungeon4 = new Dungeon("A Wooded Forest", "An old wooded forest, with bears", 72, bears[3]);
         Dungeon dungeon5 = new Dungeon("A Dirt Road", "Down an old dirt road. Also there's bears", 73, bears[4]);
-        Dungeon dungeon6 = new Dungeon("Old Shack", "A dirty old shack where bears like to hang out", 86, bears[5]);
+        Dungeon dungeon6 = new Dungeon("Your Backyard", "The backyard of your house. Why are there bears?", 86, bears[5]);
 
-        Dungeon dungeon7 = new Dungeon("Nick's Dirty Closet", "What's that smell, pizza from last year?", 94, bears[6]);
-        Dungeon dungeon8 = new Dungeon("Old Shack", "A dirty old shack where bears like to hang out", 86, bears[7]);
-        Dungeon dungeon9 = new Dungeon("Nick's Dirty Closet", "What's that smell, pizza from last year?", 94, bears[8]);
+        Dungeon dungeon7 = new Dungeon("Tree House", "A cramped Tree House, WITH BEARS.", 94, bears[6]);
+        Dungeon dungeon8 = new Dungeon("The Mall", "Some shopping at the mall, watch out for bears!", 86, bears[7]);
+        Dungeon dungeon9 = new Dungeon("Downtown Denver", "Lovely Downtown Denver, watch out for bears on 16th!", 94, bears[8]);
 
         //add them to the array
         Dungeon[] dungeons = new Dungeon[9];
@@ -191,7 +191,7 @@ public class ManVsBear {
 
             Dungeon d = dungeons[randomIndexToSwapA];
 
-            dungeons[randomIndextoSwapA] = dungeons[randomInexToSwapB];
+            dungeons[randomIndextoSwapA] = dungeons[randomIndexToSwapB];
             dungeons[randomIndextoSwapB]=d;
         }
         System.out.println(Arrays.toString(dungeons));
